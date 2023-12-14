@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@300&display=swap");
 
+/* MEDIA QUERY -> max-width: 60rem (HAMBURGER MENU) */
+/* MEDIA QUERY -> max-width: 83rem (business__description) */
+/* MEDIA QUERY -> max-width: 55rem (gallery) */
+
 :root {
   --ff-alata: "Alata", sans-serif;
   --ff-josefin: "Josefin Sans", sans-serif;
@@ -18,12 +22,11 @@
 *::after {
   box-sizing: border-box;
 }
-/*
-    2. Remove default margin
-  */
+
 * {
   margin: 0;
   padding: 0;
+  /* background-color: rgba(0, 100, 0, 0.1) !important; */
 }
 
 body {
@@ -73,6 +76,7 @@ a {
 /* UTILITIES */
 
 .container {
+  max-width: 1440px;
   width: 75%;
   margin-inline: auto;
 }
@@ -109,7 +113,8 @@ a {
 
 .content-div {
   border: 3px solid var(--primary-clr-white);
-  width: 60%;
+  /* width: 60%; */
+  width: max(60%, 40rem);
   margin-block: max(10%, 4rem);
   padding: 3rem 2.8rem;
 }
@@ -121,11 +126,27 @@ h1 {
   line-height: 1;
 }
 
+@media (max-width: 47rem) {
+  .hero-section {
+    background-image: url("images/mobile/image-hero.jpg");
+  }
+
+  .content-div {
+    width: 100%;
+    height: 50%;
+    margin-block: 50%;
+    padding: 1.4rem;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+}
+
 /* BUSINESS DESCRIPTION */
 
 .business-description {
   position: relative;
-  /* border: 3px solid steelblue; */
   margin-block: 8rem;
 }
 
@@ -133,12 +154,10 @@ h1 {
   position: absolute;
   top: 100%;
   right: 0;
-  /* transform: translate(-30%, -100%); */
   transform: translate(min(-30%, -5rem), -100%);
   z-index: 1;
-  /* border: 3px solid salmon; */
   padding: 5rem 0 0 5rem;
-  width: 40%;
+  width: max(40%, 30rem);
   font-family: var(--ff-josefin);
   background-color: var(--primary-clr-white);
 }
@@ -158,11 +177,28 @@ h1 {
   line-height: 2;
 }
 
+@media (max-width: 83rem) {
+  .business-description__details {
+    position: static;
+    padding: 0;
+    margin-inline: auto;
+    transform: translate(0, 0);
+    text-align: center;
+    margin-block-start: 3rem;
+    padding-inline: 1.2rem;
+  }
+
+  .business-description__details p {
+    font-size: 1.5rem;
+  }
+}
+
 /* GALLERY */
 
 .gallery {
-  border: 3px solid salmon;
+  /* border: 3px solid salmon; */
   position: relative;
+  margin-block-end: max(12rem, 10%);
 }
 
 .gallery h2 {
@@ -176,16 +212,8 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+  overflow: hidden;
 }
-
-/* .image-container p:first-child {
-  /* padding-block: 70%; */
-/* height: max(45rem, 70%); */
-/* height: 70%; */
-/* width: 25%; */
-/* width: 25%; */
-/* margin-top: 150%; */
-/* } */
 
 .image-container div {
   font-family: var(--ff-josefin);
@@ -193,9 +221,11 @@ h1 {
   font-size: 2rem;
   line-height: 1;
   color: var(--primary-clr-white);
-  margin-top: 140%;
+  /* margin-top: 140%; */
+  margin-top: max(140%, 10rem);
   margin-left: 15%;
-  margin-bottom: 15%;
+  /* margin-bottom: 15%; */
+  margin-bottom: max(15%, 5rem);
 }
 
 .showcase a:first-child {
@@ -275,14 +305,161 @@ h1 {
   background-repeat: no-repeat;
 }
 
+@media (max-width: 55rem) {
+  .showcase {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .image-container div {
+    margin: 0;
+    margin-top: 20%;
+    margin-left: 15%;
+    margin-bottom: 5%;
+  }
+
+  .showcase a:first-child {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/mobile/image-deep-earth.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .showcase a:nth-child(2) {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/mobile/image-night-arcade.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .showcase a:nth-child(3) {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/desktop/image-soccer-team.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .showcase a:nth-child(4) {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/desktop/image-grid.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .showcase a:nth-child(5) {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/desktop/image-from-above.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .showcase a:nth-child(6) {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/desktop/image-pocket-borealis.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .showcase a:nth-child(7) {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/desktop/image-curiosity.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .showcase a:nth-child(8) {
+    background-image: linear-gradient(
+        rgba(34, 34, 34, 0.3),
+        rgba(34, 34, 34, 0.3)
+      ),
+      url("images/desktop/image-fisheye.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
 .see-all-btn {
   position: absolute;
-  top: 0;
+  top: 0.8rem;
   right: 0;
   font-family: var(--ff-alata);
   font-weight: var(--fw-alata);
+  font-size: 0.9rem;
   letter-spacing: 3px;
   color: var(--primary-clr-black);
   background-color: var(--primary-clr-white);
-  padding: 0.2rem 2rem;
+  padding: 0.3rem 2.2rem;
+  border-radius: 2px;
+}
+
+@media (max-width: 55rem) {
+  /* .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  } */
+  .gallery h2 {
+    text-align: center;
+  }
+  .see-all-btn {
+    position: static;
+    margin-block-start: 3rem;
+  }
+}
+
+/* FOOTER */
+
+footer {
+  background-color: var(--primary-clr-black);
+  color: var(--primary-clr-white);
+  font-family: var(--ff-alata);
+  font-weight: var(--fw-alata);
+  font-size: 0.8rem;
+}
+
+.footer-navigation-wrapper {
+  padding-block: 2rem;
+}
+
+.social-copyright-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.socials {
+  gap: 1.2rem;
+}
+
+.footer-navigation img {
+  height: 20px;
+  margin-block-end: 1.5rem;
+}
+
+.socials img {
+  width: 18px;
+  aspect-ratio: 1;
+  margin-block-end: 1.5rem;
+}
+
+.copyright {
+  color: var(--primary-clr-gray-900);
 }
