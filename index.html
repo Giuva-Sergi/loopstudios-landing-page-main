@@ -14,12 +14,24 @@
     <title>Frontend Mentor | Loopstudios landing page</title>
 
     <link rel="stylesheet" href="style.css" />
+    <script src="nav.js" defer></script>
   </head>
   <body>
     <header class="hero-section">
       <nav class="primary-navigation container container__flex">
         <img src="images/logo.svg" alt="logo image" />
-        <!-- <ul class="navigation-menu container__flex">
+        <button
+          aria-controls="navigation-menu"
+          aria-expanded="false"
+          class="btn-menu"
+        >
+          <span class="sr-only">Close</span>
+        </button>
+        <ul
+          id="navigation-menu"
+          class="navigation-menu container__flex"
+          data-hidden="true"
+        >
           <li>
             <a href="#" target="_blank">About</a>
           </li>
@@ -35,7 +47,7 @@
           <li>
             <a href="#" target="_blank">Support</a>
           </li>
-        </ul> -->
+        </ul>
       </nav>
       <div class="outer-div container">
         <div class="content-div">
@@ -65,49 +77,49 @@
       <section class="gallery container">
         <h2 class="uppercase">Our creations</h2>
         <div class="showcase">
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">Deep</p>
               <p class="uppercase">earth</p>
             </div></a
           >
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">Night</p>
               <p class="uppercase">arcade</p>
             </div></a
           >
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">Soccer</p>
               <p class="uppercase">team VR</p>
             </div></a
           >
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">The</p>
               <p class="uppercase">grid</p>
             </div></a
           >
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">From up</p>
               <p class="uppercase">above VR</p>
             </div></a
           >
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">Pocket</p>
               <p class="uppercase">borealis</p>
             </div></a
           >
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">The</p>
               <p class="uppercase">curiosity</p>
             </div></a
           >
-          <a href="" class="image-container"
+          <a href="#" class="image-container"
             ><div>
               <p class="uppercase">Make it</p>
               <p class="uppercase">fisheye</p>

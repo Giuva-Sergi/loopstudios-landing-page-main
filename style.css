@@ -1,10 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@300&display=swap");
 
-/* MEDIA QUERY -> max-width: 60rem (HAMBURGER MENU) */
-/* MEDIA QUERY -> max-width: 83rem (business__description) */
-/* MEDIA QUERY -> max-width: 55rem (gallery) */
-/* MEDIA QUERY -> max-width: 50rem (footer) */
-
 :root {
   --ff-alata: "Alata", sans-serif;
   --ff-josefin: "Josefin Sans", sans-serif;
@@ -27,7 +22,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* background-color: rgba(0, 100, 0, 0.1) !important;mobile */
 }
 
 body {
@@ -98,6 +92,49 @@ a {
   text-transform: uppercase;
 }
 
+/*
+	Improved screen reader only CSS class
+	@author Gaël Poupard
+		@note Based on Yahoo!'s technique
+		@author Thierry Koblentz
+		@see https://www.cssmojo.com/hide-content-from-sighted-users/
+	* 1.
+		@note `clip` is deprecated but works everywhere
+		@see https://developer.mozilla.org/en-US/docs/Web/CSS/clip
+	* 2.
+		@note `clip-path` is the future-proof version, but not very well supported yet
+		@see https://developer.mozilla.org/en-US/docs/Web/CSS/clip-path
+		@see http://caniuse.com/#search=clip-path
+		@author Yvain Liechti
+		@see https://twitter.com/ryuran78/status/778943389819604992
+	* 3.
+		@note preventing text to be condensed
+		author J. Renée Beach
+		@see https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+		@note Drupal 8 goes with word-wrap: normal instead
+		@see https://www.drupal.org/node/2045151
+		@see http://cgit.drupalcode.org/drupal/commit/?id=5b847ea
+	* 4.
+		@note !important is important
+		@note Obviously you wanna hide something
+		@author Harry Roberts
+		@see https://csswizardry.com/2016/05/the-importance-of-important/
+*/
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important; /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important; /* 3 */
+}
+
 /* HERO SECTION */
 
 .hero-section {
@@ -118,9 +155,80 @@ a {
   padding-block: max(5%, 3rem);
 }
 
+/* HAMBURGHER MENU */
+
+.btn-menu {
+  display: none;
+}
+
+@media (max-width: 47rem) {
+  .navigation-menu[data-hidden="true"] {
+    display: none;
+  }
+
+  .btn-menu {
+    display: block;
+    width: 2rem;
+    aspect-ratio: 1;
+    background: url("images/icon-hamburger.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    position: absolute;
+    top: 2.8rem;
+    right: 2rem;
+    z-index: 9999;
+  }
+
+  .btn-menu[aria-expanded="true"] {
+    background: url("images/icon-close.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .primary-navigation {
+    display: block;
+  }
+
+  .navigation-menu {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding-block: 4rem;
+    padding-inline: min(2rem, 5vw);
+    text-transform: uppercase;
+    font-family: var(--ff-josefin);
+    font-weight: var(--fw-josefin);
+    font-size: 2rem;
+    z-index: 100;
+  }
+}
+
+a {
+  position: relative;
+}
+
+a:hover:before {
+  opacity: 1;
+  visibility: visible;
+  width: 50%;
+}
+
+a:before {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 3px;
+  background-color: var(--primary-clr-white);
+  position: absolute;
+  left: 30%;
+  bottom: -5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease-in;
+}
+
 .content-div {
   border: 3px solid var(--primary-clr-white);
-  /* width: 60%; */
   width: max(60%, 40rem);
   margin-block: max(10%, 4rem);
   padding: 3rem 2.8rem;
@@ -198,13 +306,13 @@ h1 {
 
   .business-description__details p {
     font-size: 1.5rem;
+    line-height: 1.2;
   }
 }
 
 /* GALLERY */
 
 .gallery {
-  /* border: 3px solid salmon; */
   position: relative;
   margin-block-end: max(12rem, 10%);
 }
@@ -229,15 +337,14 @@ h1 {
   font-size: 2rem;
   line-height: 1;
   color: var(--primary-clr-white);
-  /* margin-top: 140%; */
   margin-top: max(140%, 10rem);
   margin-left: 15%;
-  /* margin-bottom: 15%; */
   margin-bottom: max(15%, 5rem);
 }
 
 .showcase a:first-child {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
@@ -248,6 +355,7 @@ h1 {
 
 .showcase a:nth-child(2) {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
@@ -258,6 +366,7 @@ h1 {
 
 .showcase a:nth-child(3) {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
@@ -268,6 +377,7 @@ h1 {
 
 .showcase a:nth-child(4) {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
@@ -278,6 +388,7 @@ h1 {
 
 .showcase a:nth-child(5) {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
@@ -287,6 +398,7 @@ h1 {
 }
 .showcase a:nth-child(6) {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
@@ -296,6 +408,7 @@ h1 {
 }
 .showcase a:nth-child(7) {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
@@ -305,12 +418,26 @@ h1 {
 }
 .showcase a:nth-child(8) {
   background-image: linear-gradient(
+      to bottom,
       rgba(34, 34, 34, 0.3),
       rgba(34, 34, 34, 0.3)
     ),
     url("images/desktop/image-fisheye.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.showcase > a {
+  transition: all 350ms linear;
+}
+
+.showcase:has(div:hover) > a:not(:has(:hover)) {
+  opacity: 0.5;
+  scale: 0.9;
+}
+
+.showcase:has(div:hover) > a:not(:has(:hover)) > div {
+  color: var(--primary-clr-black);
 }
 
 @media (max-width: 55rem) {
@@ -428,6 +555,14 @@ h1 {
   background-color: var(--primary-clr-white);
   padding: 0.3rem 2.2rem;
   border-radius: 2px;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.see-all-btn:hover,
+.see-all-btn:active {
+  color: var(--primary-clr-white);
+  background-color: var(--primary-clr-black);
 }
 
 @media (max-width: 55rem) {
@@ -464,6 +599,7 @@ footer {
 
 .socials {
   gap: 1.2rem;
+  cursor: pointer;
 }
 
 .footer-navigation img {
